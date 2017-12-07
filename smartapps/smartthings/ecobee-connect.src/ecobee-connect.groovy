@@ -525,8 +525,8 @@ private def Boolean testForDeviceHandlers() {
     def success = true
     
 	try {    	
-		d1 = addChildDevice(app.namespace, getChildThermostatName(), "dummyThermDNI-${DNIAdder}", null, ["label":"Ecobee Thermostat:TestingForInstall", completedSetup:true])
-		d2 = addChildDevice(app.namespace, getChildSensorName(), "dummySensorDNI-${DNIAdder}", null, ["label":"Ecobee Sensor:TestingForInstall", completedSetup:true])
+		d1 = addChildDevice(app.namespace, getChildThermostatName(), "dummyThermDNI-${DNIAdder}", null, ["label":"Ecobee Thermostat 2:TestingForInstall", completedSetup:true])
+		d2 = addChildDevice(app.namespace, getChildSensorName(), "dummySensorDNI-${DNIAdder}", null, ["label":"Ecobee Sensor 2:TestingForInstall", completedSetup:true])
 	} catch (physicalgraph.app.exception.UnknownDeviceTypeException e) {
 		LOG("You MUST add the ${getChildThermostatName()} and ${getChildSensorName()} Device Handlers to the IDE BEFORE running the setup.", 1, null, "error")
 		success = false
@@ -3567,8 +3567,8 @@ private def sendJsonRetry() {
     return sendJson(child, atomicState.savedActionJsonBody)
 }
 
-private def getChildThermostatName() { return "Ecobee Thermostat" }
-private def getChildSensorName()     { return "Ecobee Sensor" }
+private def getChildThermostatName() { return "Ecobee Thermostat 2" }
+private def getChildSensorName()     { return "Ecobee Sensor 2" }
 private def getServerUrl()           { return "https://graph.api.smartthings.com" }
 private def getShardUrl()            { return getApiServerUrl() }
 private def getCallbackUrl()         { return "${serverUrl}/oauth/callback" }
