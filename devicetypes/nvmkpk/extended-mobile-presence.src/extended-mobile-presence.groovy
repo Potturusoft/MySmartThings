@@ -15,77 +15,90 @@
  */
  
 metadata {
-	definition (name: "Extended Mobile Presence", namespace: "nvmkpk", author: "nvmkpk") {
-		capability "Presence Sensor"
-		capability "Sensor"
-	}
+    definition (name: "Extended Mobile Presence", namespace: "nvmkpk", author: "nvmkpk") {
+        capability "Presence Sensor"
+        capability "Sensor"
+    }
 
-	simulator {
-		status "present": "presence: 1"
-		status "not present": "presence: 0"
-	}
+    simulator {
+        status "present": "presence: 1"
+        status "not present": "presence: 0"
+    }
 
-	tiles {
-		standardTile("presence", "device.presence", width: 2, height: 2, canChangeBackground: true) {
-			state("present", labelIcon:"st.presence.tile.mobile-present", backgroundColor:"#00A0DC")
-			state("not present", labelIcon:"st.presence.tile.mobile-not-present", backgroundColor:"#ffffff")
-		}
-		main "presence"
-		details "presence"
-	}
+    tiles {
+        standardTile("presence", "device.presence", width: 2, height: 2, canChangeBackground: true) {
+            state("present", labelIcon:"st.presence.tile.mobile-present", backgroundColor:"#00A0DC")
+            state("not present", labelIcon:"st.presence.tile.mobile-not-present", backgroundColor:"#ffffff")
+        }
+        main "presence"
+        details "presence"
+    }
 }
 
 def parse(String description) {
-	def name = parseName(description)
-	def value = parseValue(description)
-	def linkText = getLinkText(device)
-	def descriptionText = parseDescriptionText(linkText, value, description)
-	def handlerName = getState(value)
-	def isStateChange = isStateChange(device, name, value)
+    log.debug "Parse returning $description"
 
-	def results = [
-    	translatable: true,
-		name: name,
-		value: value,
-		unit: null,
-		linkText: linkText,
-		descriptionText: descriptionText,
-		handlerName: handlerName,
-		isStateChange: isStateChange,
-		displayed: displayed(description, isStateChange)
-	]
-	log.debug "Parse returned $results.descriptionText"
-	return results
+    def name = parseName(description)
+    def value = parseValue(description)
+    def linkText = getLinkText(device)
+    def descriptionText = parseDescriptionText(linkText, value, description)
+    def handlerName = getState(value)
+    def isStateChange = isStateChange(device, name, value)
+
+    def results = [
+        translatable: true,
+        name: name,
+        value: value,
+        unit: null,
+        linkText: linkText,
+        descriptionText: descriptionText,
+        handlerName: handlerName,
+        isStateChange: isStateChange,
+        displayed: displayed(description, isStateChange)
+    ]
+
+    log.debug "Parse returning $results"
+    return results
 
 }
 
 private String parseName(String description) {
-	if (description?.startsWith("presence: ")) {
-		return "presence"
-	}
-	null
+    if (description?.startsWith("presence: ")) {
+        return "presence"
+    }
+    null
 }
 
 private String parseValue(String description) {
-	switch(description) {
-		case "presence: 1": return "present"
-		case "presence: 0": return "not present"
-		default: return description
-	}
+    switch(description) {
+        case "presence: 1": return "present"
+        case "presence: 0": return "not present"
+        default: return description
+    }
 }
 
 private parseDescriptionText(String linkText, String value, String description) {
-	switch(value) {
-		case "present": return "{{ linkText }} has arrived"
-		case "not present": return "{{ linkText }} has left"
-		default: return value
-	}
+    switch(value) {
+        case "present":
+            return "{{ linkText }} has arrived"
+
+        case "not present":
+            return "{{ linkText }} has left"
+
+        default:
+            return value
+    }
 }
 
 private getState(String value) {
-	switch(value) {
-		case "present": return "arrived"
-		case "not present": return "left"
-		default: return value
-	}
+    switch(value) {
+        case "present":
+            return "arrived"
+
+        case "not present":
+            return "left"
+
+        default:
+            return value
+    }
 }
