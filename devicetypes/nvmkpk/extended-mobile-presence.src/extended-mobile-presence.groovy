@@ -26,7 +26,7 @@ metadata {
     }
 
     tiles {
-        standardTile("presence", "device.presence", width: 2, height: 2, canChangeBackground: true) {
+        standardTile("presence", "device.presence", width: 3, height: 2, canChangeBackground: true) {
             state("present", labelIcon:"st.presence.tile.mobile-present", backgroundColor:"#00A0DC")
             state("not present", labelIcon:"st.presence.tile.mobile-not-present", backgroundColor:"#ffffff")
         }
