@@ -18,16 +18,16 @@ definition(
     namespace: "nvmkpk",
     author: "Praveen Potturu",
     description: "Tracks arrival and departure of vehicles",
-    category: "Mode Magic",
+    category: "Convenience",
     iconUrl: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience.png",
     iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png",
     iconX3Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png")
 
 
 preferences {
-	section("Allow external service to control these things...") {
-		input "presenceSensors", "capability.presenceSensor", multiple: true, required: true
-	}
+    section("Allow external service to control these things...") {
+        input "presenceSensors", "capability.presenceSensor", multiple: true, required: true
+    }
 }
     
 mappings {
@@ -85,18 +85,18 @@ def updateSensor() {
 }
 
 def installed() {
-	log.debug "Installed with settings: ${settings}"
+    log.debug "Installed with settings: ${settings}"
 
-	initialize()
+    initialize()
 }
 
 def updated() {
-	log.debug "Updated with settings: ${settings}"
+    log.debug "Updated with settings: ${settings}"
 
-	unsubscribe()
-	initialize()
+    unsubscribe()
+    initialize()
 }
 
 def initialize() {
-	// TODO: subscribe to attributes, devices, locations, etc.
+    // TODO: subscribe to attributes, devices, locations, etc.
 }
