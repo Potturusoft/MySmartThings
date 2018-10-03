@@ -58,7 +58,7 @@ metadata {
         standardTile("toggle", "device.door", width: 2, height: 2) {
             state("unknown", label: '${name}', action: "refresh.refresh", icon: "st.doors.garage.garage-open", backgroundColor: "#ffa81e")
             state("closed", label: '${name}', action: "door control.open", icon: "st.doors.garage.garage-closed", backgroundColor: "#79b821", nextState: "opening")
-            state("open", label: '${name}', action: "door control.close", icon: "st.doors.garage.garage-open", backgroundColor: "#ffa81e", nextState: "closing")
+            state("open", label: '${name}', action: "door control.close", icon: "st.doors.garage.garage-open", backgroundColor: "#ff0000", nextState: "closing")
             state("opening", label: '${name}', icon: "st.doors.garage.garage-opening", backgroundColor: "#ffe71e")
             state("closing", label: '${name}', icon: "st.doors.garage.garage-closing", backgroundColor: "#ffe71e")
 
