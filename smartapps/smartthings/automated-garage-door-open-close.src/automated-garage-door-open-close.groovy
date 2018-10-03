@@ -44,7 +44,7 @@ preferences {
 	section("Garage door") {
 		input "doorSensor", "capability.contactSensor", title: "Which sensor?"
 		input "doorSwitch", "capability.momentary", title: "Which switch?"
-		input "openThreshold", "number", title: "Warn when open longer than (optional)",description: "Number of minutes", required: true
+		input "openThreshold", "number", title: "Warn when open longer than (optional)",description: "Number of minutes", required: false
         input "autoCloseGarageDoor", "enum", title: "Close the garage door after being open longer than selected minutes", options: ['Yes', 'No'], required: true 
         input "skipcheck", "enum", title: "Working in the garage and want to keep the door open with no alerts? (If Yes door open checks will NOT happen, will need to reset to No when you're done in the garage to have checks happen again)", options: ['Yes', 'No'], required: true
         input("recipients", "contact", title: "Send notifications to") {
